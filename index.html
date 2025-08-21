@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix & Match Filipino Healing Foods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Healthy green */
+            --secondary-color: #FFC107; /* Warm yellow */
+            --accent-color: #2E7D32; /* Darker green */
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        /* --- Header Section --- */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1600x900/?filipino-food,healthy-food,fruits,vegetables') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 6rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header h2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #FFD54F;
+            transform: translateY(-3px);
+        }
+
+        /* --- Main Content Sections --- */
+        main {
+            max-width: 900px;
+            margin: -3rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: #fff;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Benefits Section --- */
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .benefits-list li {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem;
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s ease;
+        }
+        
+        /* --- Accordion Chapters Section --- */
+        .accordion-container {
+            margin-top: 1.5rem;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            background-color: #fff;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 1.25rem 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-family: inherit;
+        }
+        
+        .accordion-header:hover {
+            background-color: #f4f4f4;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: absolute;
+            right: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header[aria-expanded="true"]::after {
+            transform: rotate(45deg);
+        }
+        
+        .chapter-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .chapter-subtitle {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .accordion-content {
+            background-color: #fafafa;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding: 0 1.2rem;
+        }
+
+        .accordion-content.open {
+            padding: 1.2rem;
+            max-height: 1000px; /* A large enough value for smooth transition */
+        }
+        
+        .accordion-content ul {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* --- Disclaimer Section --- */
+        .disclaimer-section {
+            border-left: 5px solid #E53935;
+            background-color: #fff8f8;
+        }
+
+        .disclaimer-section h3 {
+            color: #E53935;
+        }
+
+        /* --- Final CTA Section --- */
+        .final-cta-section {
+            text-align: center;
+        }
+        
+        .large-cta {
+            padding: 1.2rem 3.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quote {
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .accordion-header::after {
+                top: 2rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="fade-in">
+        <h1>Mix & Match Filipino Healing Foods</h1>
+        <h2>Pinoy Dishes na Hindi Ka Sasaktan</h2>
+        <!-- Update the href attribute with your actual ebook link -->
+        <a href="https://inyong-ebook-link.com" class="cta-button">GET THE EBOOK</a>
+    </header>
+
+    <main>
+        <section class="intro-section fade-in">
+            <h3>Bakit "Mix & Match" ang Approach Natin?</h3>
+            <p>Alam natin lahat ang Mix & Match sa mga fastfood - pipili ka lang kung anong gusto mo, tapos pwede mo nang kainin. Ganyan din ang approach natin sa healthy eating! Hindi kailangan maging complicated ang pag-aalaga sa sarili. Mga pagkaing kinagisnan natin lang, pero ginawang mas healthy at mas nakaka-ginhawa sa katawan. Parang luto ng nanay o lola - simple, masarap, at nakaka-galing.</p>
+            <p>Itong guide na ito ay 5-day quick fix lang. Simple pero power-packed ng practical tips na pwede mo nang gamitin ngayong araw pa lang!</p>
+        </section>
+
+        <section class="benefits-section fade-in">
+            <h3>Ano ang Makukuha Mo sa Guide na Ito?</h3>
+            <ul class="benefits-list">
+                <li>✅ Hindi ka na mahihirapan sa symptoms</li>
+                <li>✅ Makakakain ka pa rin ng masasarap</li>
+                <li>✅ Hindi mahal ang ingredients</li>
+                <li>✅ Madaling lutuin</li>
+            </ul>
+        </section>
+
+        <section class="chapters-section fade-in">
+            <h3>Isang Silip sa Loob ng Ebook</h3>
+            <p>Alamin kung paano gagamitin ang pamilyar na Pinoy ingredients para alagaan ang sarili.</p>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="chapter-title">Chapter 1: DIABETES</span>
+                        <span class="chapter-subtitle">"Pwede Mo Pa Ring Kainin ang Adobo!"</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>Ang Solusyon: 3-2-1 Rule</h4>
+                        <p>3 servings ng gulay, 2 servings ng protein, 1 serving ng brown rice lang. Gumamit ng malunggay at ampalaya bilang base ingredients. Ang "Malunggay Power Soup" ay isa sa mga power recipes dito.</p>
+                        <h4>Quick Wins Tips:</h4>
+                        <p>⚡ Rice Hack: Mix 1/4 brown rice + 3/4 white rice. Gradually increase brown rice ratio<br>⚡ Ampalaya Hack: Salt it first, rinse after 15 minutes para hindi masyadong bitter<br>⚡ Snack Hack: Kapag craving sweets, kumain ng saging na saba</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="chapter-title">Chapter 2: HYPERTENSION</span>
+                        <span class="chapter-subtitle">"Walang Sakit sa Ulo Promise!"</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>Ang Solusyon: Less Salt, More Lasa Strategy</h4>
+                        <p>Palitan ang asin ng asim, anghang, at bango. Ang "Adobong Puti" na zero salt ay isa sa mga highlights dito.</p>
+                        <h4>Quick Wins Tips:</h4>
+                        <p>⚡ Salt Substitute: Calamansi + black pepper sa lahat<br>⚡ Flavor Booster: Double the ginger and garlic<br>⚡ Headache Relief: Drink ginger tea daily</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="chapter-title">Chapter 3: KIDNEY PROBLEMS</span>
+                        <span class="chapter-subtitle">"Healthy Bato, Happy Life!"</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>Ang Solusyon: Small Portions, Safe Choices</h4>
+                        <p>Mag-stick sa 2-3 oz na protein, iwasan ang high potassium fruits, at pumili ng safe vegetables tulad ng repolyo at pipino. Ang "Gentle Lugaw" ay perpekto para sa atay.</p>
+                        <h4>Quick Wins Tips:</h4>
+                        <p>⚡ Portion Control: Use smaller plates<br>⚡ Water Intake: Follow doctor's advice (usually limited)<br>⚡ Safe Snacks: Apple slices, rice crackers</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="chapter-title">Chapter 4: ARTHRITIS & GOUT</span>
+                        <span class="chapter-subtitle">"Goodbye Joint Pain!"</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>Ang Solusyon: Anti-Inflammatory Power Foods</h4>
+                        <p>Gumamit ng natural pain reliever tulad ng ginger, turmeric, at fish. Iwasan ang high purine foods tulad ng isaw at monggo. Subukan ang "Triple Anti-Inflammatory Soup" araw-araw.</p>
+                        <h4>Quick Wins Tips:</h4>
+                        <p>⚡ Daily Ginger: Add sa lahat ng luto mo<br>⚡ Turmeric Hack: Mix sa scrambled eggs<br>⚡ Pain Relief Drink: Ginger + turmeric tea daily</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="chapter-title">Chapter 5: GERD/HYPERACIDITY</span>
+                        <span class="chapter-subtitle">"No More Heartburn Nights!"</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>Ang Solusyon: Alkaline Foods + Gentle Cooking</h4>
+                        <p>Mag-focus sa steaming, boiling, at baking. Iwasan ang maasim, maanghang, at prito. Ang "Healing Lugaw" ay ang ultimate comfort food para sa tiyan.</p>
+                        <h4>Quick Wins Tips:</h4>
+                        <p>⚡ Eating Schedule: Small frequent meals (5-6 times a day)<br>⚡ Sleeping Hack: Don't eat 3 hours before bedtime<br>⚡ Emergency Relief: Banana o kamote kapag sumasakit</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bonus-section fade-in">
+            <h3>Dagdag na Bonus!</h3>
+            <h4>Palengke Shopping Guide</h4>
+            <p>Kasama na dito ang isang budget-friendly shopping list at mga Quick Market Tips para masulit ang iyong budget. Maging suki at mag-invest sa seasonal buying.</p>
+            
+            <h4>Your Next Steps</h4>
+            <p>Sundin ang 3-week guide sa Foundation Building, Building Habits, at Mastery Phase para maging lifestyle ang healthy eating.</p>
+        </section>
+
+        <section class="disclaimer-section fade-in">
+            <h3>Disclaimer: Alaga sa Sarili</h3>
+            <p>Itong gabay na ito ay gawa para sa mga taong gustong mag-improve ng kanilang kalusugan. Pero tandaan, **hindi ito kapalit ng professional medical advice.** Palagi kayong makikipag-consult sa doctor at huwag ititigil ang mga maintenance medicines. Ang primary care ninyo ay nasa kamay ng mga healthcare professionals.</p>
+        </section>
+
+        <section class="final-cta-section fade-in">
+            <h3>Handa Ka Na Ba Mag-simula?</h3>
+            <!-- Update the href attribute with your actual ebook link -->
+            <a href="https://inyong-ebook-link.com" class="cta-button large-cta">GET YOUR COPY NOW!</a>
+            <p class="quote">"Ang sarap mabuhay kapag healthy ka!"</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with Gemini. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const accordionItem = header.parentElement;
+                    const accordionContent = accordionItem.querySelector('.accordion-content');
+                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        const otherHeader = item.querySelector('.accordion-header');
+                        const otherContent = item.querySelector('.accordion-content');
+                        if (otherHeader !== header) {
+                            otherHeader.setAttribute('aria-expanded', 'false');
+                            otherContent.style.maxHeight = 0;
+                            otherContent.classList.remove('open');
+                        }
+                    });
+
+                    if (isExpanded) {
+                        header.setAttribute('aria-expanded', 'false');
+                        accordionContent.style.maxHeight = 0;
+                        accordionContent.classList.remove('open');
+                    } else {
+                        header.setAttribute('aria-expanded', 'true');
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                        accordionContent.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
